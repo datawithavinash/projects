@@ -1,0 +1,160 @@
+             Carrer aspiration of Genz SQL Queries
+
+select * from learning_aspirations as ls
+join manager_aspirations as ma on  ls.responseid=ma.ResponseID
+join mission_aspirations as mis on mis.ResponseID=ma.ResponseID
+join personalized_info as pi on pi.ResponseID=ma.ResponseID
+
+
+1!how many males have responded to the survey from india-
+
+SELECT COUNT(*) FROM personalized_info
+WHERE Gender like"MALE%" AND CurrentCountry LIKE"INDIA%"
+
+2! how many females have responded to the survey from india-
+
+SELECT COUNT(*) FROM personalized_info
+WHERE Gender like"FEMALE%" AND CurrentCountry LIKE"INDIA%"
+
+3! how many of the Gen-Z are influenced by their parents in regards to their career choices from India 
+
+SELECT COUNT(*) FROM learning_aspirations
+WHERE CareerInfluenceFactor="MY PARENTS"
+
+4!How many of female Gen Z are influenced by their parents in regard to their career choices from india
+
+SELECT COUNT(*) FROM learning_aspirations AS LA
+JOIN personalized_info AS PI 
+ON LA.ResponseID=PI.ResponseID
+WHERE LA.CareerInfluenceFactor="MY PARENTS" AND PI.Gender LIKE "FEMALE%";
+
+
+5!How many of male Gen Z are influenced by their parents in regard to their career choices from india
+
+SELECT COUNT(*) FROM learning_aspirations AS LA
+JOIN personalized_info AS PI 
+ON LA.ResponseID=PI.ResponseID
+WHERE LA.CareerInfluenceFactor="MY PARENTS" AND PI.Gender LIKE "MALE%"
+
+6!How many of the Male and Female(indivisually display in 2 different columns, but as a part of the same query) Gen-Z are influenced by their parents in regards to therir career choices from india
+
+select sum(CASE WHEN gender LIKE "Male%" AND CareerInfluenceFactor = "My Parents"
+  THEN 1 ELSE 0 END) AS Male,
+  sum(CASE WHEN gender LIKE "feMale%" AND CareerInfluenceFactor = "My Parents"
+  THEN 1 ELSE 0 END) AS female
+FROM learning_aspirations AS LA
+JOIN personalized_info AS PI ON LA.ResponseID = PI.ResponseID
+WHERE currentcountry LIKE "India%"
+
+
+7!how many gen-Z are influenced by social media and Influencer together from India
+
+SELECT  COUNT(*) FROM learning_aspirations AS LA
+JOIN personalized_info AS PI
+ON LA.ResponseID=PI.ResponseID
+WHERE PI.CurrentCountry LIKE "INDIA%" AND CareerInfluenceFactor IN ("Social Media like LinkedIn",
+"Influencers who had successful careers")
+
+8!How many Gen-Z are influenced by social media and influencers together, display for Male and Female seperately from India
+
+SELECT pi.gender,COUNT(*) FROM learning_aspirations AS LA
+JOIN personalized_info AS PI
+ON LA.ResponseID=PI.ResponseID
+WHERE PI.CurrentCountry LIKE "INDIA%" AND CareerInfluenceFactor IN ("Social Media like LinkedIn",
+"Influencers who had successful careers")
+group by gender;
+
+9!how many of the Gen-Z who are influenced by the social media for their career aspiration are looking to go abroad
+
+SELECT  COUNT(*) FROM learning_aspirations AS LA
+WHERE CareerInfluenceFactor IN ("Social Media like LinkedIn") AND 
+HigherEducationAbroad="Yes, I wil";
+
+
+10!How many Of the Gen-Z who are influenced by "people in their circle" for career aspiration are looking to go abroad
+
+SELECT  COUNT(*) FROM learning_aspirations AS LA
+WHERE 
+CareerInfluenceFactor ="People from my circle, but not family members"
+and  
+HigherEducationAbroad ="Yes, I wil"
+
+
+select * from learning_aspirations as ls
+join manager_aspirations as ma on  ls.responseid=ma.ResponseID
+join mission_aspirations as mis on mis.ResponseID=ma.ResponseID
+join personalized_info as pi on pi.ResponseID=ma.ResponseID
+
+
+1!how many males have responded to the survey from india-
+
+SELECT COUNT(*) FROM personalized_info
+WHERE Gender like"MALE%" AND CurrentCountry LIKE"INDIA%"
+
+2! how many females have responded to the survey from india-
+
+SELECT COUNT(*) FROM personalized_info
+WHERE Gender like"FEMALE%" AND CurrentCountry LIKE"INDIA%"
+
+3! how many of the Gen-Z are influenced by their parents in regards to their career choices from India 
+
+SELECT COUNT(*) FROM learning_aspirations
+WHERE CareerInfluenceFactor="MY PARENTS"
+
+4!How many of female Gen Z are influenced by their parents in regard to their career choices from india
+
+SELECT COUNT(*) FROM learning_aspirations AS LA
+JOIN personalized_info AS PI 
+ON LA.ResponseID=PI.ResponseID
+WHERE LA.CareerInfluenceFactor="MY PARENTS" AND PI.Gender LIKE "FEMALE%";
+
+
+5!How many of male Gen Z are influenced by their parents in regard to their career choices from india
+
+SELECT COUNT(*) FROM learning_aspirations AS LA
+JOIN personalized_info AS PI 
+ON LA.ResponseID=PI.ResponseID
+WHERE LA.CareerInfluenceFactor="MY PARENTS" AND PI.Gender LIKE "MALE%"
+
+6!How many of the Male and Female(indivisually display in 2 different columns, but as a part of the same query) Gen-Z are influenced by their parents in regards to therir career choices from india
+
+select sum(CASE WHEN gender LIKE "Male%" AND CareerInfluenceFactor = "My Parents"
+  THEN 1 ELSE 0 END) AS Male,
+  sum(CASE WHEN gender LIKE "feMale%" AND CareerInfluenceFactor = "My Parents"
+  THEN 1 ELSE 0 END) AS female
+FROM learning_aspirations AS LA
+JOIN personalized_info AS PI ON LA.ResponseID = PI.ResponseID
+WHERE currentcountry LIKE "India%"
+
+
+7!how many gen-Z are influenced by social media and Influencer together from India
+
+SELECT  COUNT(*) FROM learning_aspirations AS LA
+JOIN personalized_info AS PI
+ON LA.ResponseID=PI.ResponseID
+WHERE PI.CurrentCountry LIKE "INDIA%" AND CareerInfluenceFactor IN ("Social Media like LinkedIn",
+"Influencers who had successful careers")
+
+8!How many Gen-Z are influenced by social media and influencers together, display for Male and Female seperately from India
+
+SELECT pi.gender,COUNT(*) FROM learning_aspirations AS LA
+JOIN personalized_info AS PI
+ON LA.ResponseID=PI.ResponseID
+WHERE PI.CurrentCountry LIKE "INDIA%" AND CareerInfluenceFactor IN ("Social Media like LinkedIn",
+"Influencers who had successful careers")
+group by gender;
+
+9!how many of the Gen-Z who are influenced by the social media for their career aspiration are looking to go abroad
+
+SELECT  COUNT(*) FROM learning_aspirations AS LA
+WHERE CareerInfluenceFactor IN ("Social Media like LinkedIn") AND 
+HigherEducationAbroad="Yes, I wil";
+
+
+10!How many Of the Gen-Z who are influenced by "people in their circle" for career aspiration are looking to go abroad
+
+SELECT  COUNT(*) FROM learning_aspirations AS LA
+WHERE 
+CareerInfluenceFactor ="People from my circle, but not family members"
+and  
+HigherEducationAbroad ="Yes, I wil"
